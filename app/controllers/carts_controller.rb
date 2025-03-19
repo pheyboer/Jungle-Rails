@@ -27,7 +27,10 @@ class CartsController < ApplicationController
   end
 
   def enhanced_cart
-    session[:cart] ||= {}
+    session[:cart].map do |product_id, quantity|
+      product = Product.find(product_id)
+      { product: product, quantity: quantity }
+    end
   end
 
   def update_cart(cart)

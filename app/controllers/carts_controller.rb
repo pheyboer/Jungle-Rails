@@ -27,14 +27,24 @@ class CartsController < ApplicationController
   end
 
   def enhanced_cart
-    session[:cart].map do |product_id, quantity|
-      product = Product.find(product_id)
-      { product: product, quantity: quantity }
-    end
+    @enhanced_cart ||= cart.map { |product_id, qty| 
+      {
+        product: Product.find(product_id),
+        quantity: qty
+      }
+    }
   end
 
-  def update_cart(cart)
-    session[:cart] = cart
+  def cart
+    @cart ||= cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
+  end
+
+  def update_cart(new_cart)
+    cookies[:cart] = {
+      value: JSON.generate(new_cart),
+      expires: 10.days.from_now
+    }
+    cookies[:cart]
   end
 
 end

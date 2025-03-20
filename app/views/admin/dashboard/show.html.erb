@@ -1,15 +1,32 @@
 <h1>Admin Dashboard</h1>
 
-<div class="panel panel-default">
-  <div class="panel-heading">General Statistics</div>
-  <div class="panel-body">
-    <p>
-      <strong>Product Count:</strong> 
-      <%= link_to @product_count, admin_products_path %>
-    </p>
-    <p>
-      <strong>Category Count:</strong> 
-      <%= link_to @category_count, admin_root_path %>
-    </p>
+<div class="row mt-4">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Products</h5>
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">
+          <%= link_to @product_count, admin_products_path, class: "text-decoration-none" %>
+        </h2>
+        <p class="card-text">Total products in database</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Categories</h5>
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">
+          <%# <%= link_to @category_count, admin_categories_path, class: "text-decoration-none" %>
+          <%= @category_count %>
+        </h2>
+        <p class="card-text">Total categories in database</p>
+      </div>
+    </div>
   </div>
 </div>

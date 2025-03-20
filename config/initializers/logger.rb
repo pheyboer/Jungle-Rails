@@ -15,3 +15,5 @@ unless defined?(Logger::Severity)
     include Severity
   end
 end
+
+# Used this when rails had errors

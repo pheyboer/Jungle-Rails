@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
     Rails.logger.info "Attempting Stripe charge with amount: #{cart_subtotal_cents}"
 
 
-    #testing
+    # Payment Testing - tok_visa special test token
     token = params[:stripeToken] || 'tok_visa'
 
     Stripe::Charge.create({

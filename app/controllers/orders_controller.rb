@@ -40,7 +40,8 @@ class OrdersController < ApplicationController
     token = params[:stripeToken] || 'tok_visa'
 
     Stripe::Charge.create({
-      source:      params[:stripeToken],
+      source:      token,
+      # source:      params[:stripeToken],
       amount:      cart_subtotal_cents,
       description: "Jungle Order",
       currency:    'cad'

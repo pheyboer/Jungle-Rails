@@ -1,4 +1,4 @@
-class Admin::CategoriesController < ApplicationController
+class Admin::CategoriesController < Admin::BaseController
   def index
     @categories = Category.order(id: :desc).all
   end
@@ -17,6 +17,10 @@ class Admin::CategoriesController < ApplicationController
     end
   end
 
+  private
 
-  
+  def category_params
+    params.require(:category).permit(:name)
+  end
+
 end

@@ -5,18 +5,24 @@ class OrdersController < ApplicationController
   end
 
   def create
-    charge = perform_stripe_charge
-    order  = create_order(charge)
+    begin
+      charge = perform_stripe_charge
+      order  = create_order(charge)
 
-    if order.valid?
-      empty_cart!
-      redirect_to order, notice: 'Your Order has been placed.'
-    else
-      redirect_to cart_path, flash: { error: order.errors.full_messages.first }
+      if order.valid?
+        empty_cart!
+        redirect_to order, notice: 'Your Order has been placed.'
+      else
+        redirect_to cart_path, flash: { error: order.errors.full_messages.first }
+      end
+
+    rescue Stripe::CardError => e
+      Rails.logger.error "Stripe card error: #{e.message}"
+      redirect_to cart_path, flash: { error: e.message }
+    rescue => e
+      Rails.logger.error "Order error: #{e.class} - #{e.message}"
+      redirect_to cart_path, flash: { error: 'An error occurred while processing your order.' }
     end
-
-  rescue Stripe::CardError => e
-    redirect_to cart_path, flash: { error: e.message }
   end
 
   private
@@ -27,12 +33,19 @@ class OrdersController < ApplicationController
   end
 
   def perform_stripe_charge
-    Stripe::Charge.create(
-      source:      params[:stripeToken],
+    Rails.logger.info "Attempting Stripe charge with amount: #{cart_subtotal_cents}"
+
+
+    # Payment Testing - tok_visa special test token
+    token = params[:stripeToken] || 'tok_visa'
+
+    Stripe::Charge.create({
+      source:      token,
+      # source:      params[:stripeToken],
       amount:      cart_subtotal_cents,
-      description: "Khurram Virani's Jungle Order",
+      description: "Jungle Order",
       currency:    'cad'
-    )
+    })
   end
 
   def create_order(stripe_charge)

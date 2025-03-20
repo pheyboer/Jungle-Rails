@@ -22,7 +22,7 @@
         </thead>
         <tbody>
           <% @enhanced_cart.each do |item| %>
-            <%= render 'item', product: item[:product], quantity: item[:quantity].to_i %>
+            <%= render 'item', product: item[:product], quantity: item[:quantity] %>
           <% end %>
         </tbody>
         <tfoot>
@@ -38,19 +38,15 @@
       </table>
     </div>
 
+
+    <%# Cart view Payment - added tok_visa due to token not working %>
     <div class="row">
       <div class="col-xs-12">
         <%= form_tag orders_path do %>
-          <script
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-amount="<%= cart_subtotal_cents %>"
-            data-name="Jungle"
-            data-description="Khurram Virani's Jungle Order"
-            data-locale="auto"
-            data-email="kvirani@gmail.com"
-            data-currency="cad">
-          </script>
+          <button type="submit" class="btn btn-primary">
+            Checkout - $<%= cart_subtotal_cents / 100.0 %>
+          </button>
+          <%= hidden_field_tag 'stripeToken', 'tok_visa' %>
         <% end %>
       </div>
     </div>

@@ -2,6 +2,8 @@ require_relative "boot"
 
 require "rails/all"
 
+# Used this when Stripe wasnt working
+
 if ['development', 'test'].include? ENV['RAILS_ENV']
   require 'dotenv'
   Dotenv.load

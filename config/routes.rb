@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
   get 'users/new'
-  get 'users/create'
+  # get 'users/create'
   get 'about/index'
+
+  # adding routes for user registration and login
+  get '/signup', to: 'users#new'
+  post '/users', to: 'users#create'
+
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
 
   # Route for about index
   get 'about', to: 'about#index'

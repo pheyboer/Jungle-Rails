@@ -14,8 +14,9 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path, notice: 'Account Created Successfully!'
     else
-      notice: 'Account was unable to be created'
+      flash.now[:notice] = 'Account was unable to be created'
       render :new
+    end
   end
   
   private

@@ -1,3 +1,4 @@
+# User controller for registration
 class UsersController < ApplicationController
   def index
     @users = User.all

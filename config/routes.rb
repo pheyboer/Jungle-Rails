@@ -30,9 +30,9 @@ Rails.application.routes.draw do
   resources :orders, only: [:create, :show]
 
   namespace :admin do
-    # get 'categories/index'
-    # get 'categories/new'
-    # get 'categories/create'
+    get 'categories/index'
+    get 'categories/new'
+    get 'categories/create'
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
     # adding route for admin categories. only implementing index new and create

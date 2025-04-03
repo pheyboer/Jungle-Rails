@@ -10,7 +10,14 @@ class User < ApplicationRecord
 
   # Method for authentication
   def self.authenticate_with_credentials(email, password)
-    user = User.find_by_email(email)
+
+    # return nil if email is nil
+    return nil if email.nil?
+
+    # clean up the email (strip spaces and downcase)
+    clean_email = email.strip.downcase
+
+    user = User.find_by_email(clean_email)
 
     if user && user.authenticate(password)
       return user

@@ -86,8 +86,35 @@ RSpec.describe User, type: :model do
       expect(user).to_not be_valid
       expect(user.errors.full_messages).to include("First name can't be blank")
     end
+
+    # test last name
+    it 'should require a last name' do
+      user = User.new(
+        first_name: "John",
+        last_name: nil,
+        email: "test@example.com",
+        password: "password",
+        password_confirmation: "password"
+      )
+      expect(user).to_not be_valid
+      expect(user.errors.full_messages).to include("Last name can't be blank")
+    end
+
+    # test password minimum
+    it 'should have a password with minimum length of 8 characters' do
+      user = User.new(
+        first_name: "John",
+        last_name: "Doe",
+        email: "test@example.com",
+        password: "short",
+        password_confirmation: "short"
+      )
+      expect(user).to_not be_valid
+      expect(user.errors.full_messages).to include("Password is too short (minimum is 8 characters)")
+    end
+  end
   
   
 
-  end
+  
 end

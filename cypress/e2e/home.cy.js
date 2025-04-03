@@ -1,12 +1,4 @@
 describe('Home Page', () => {
-  beforeEach(() => {
-    cy.visit("/");
-    // Log the HTML to debug
-    cy.log('Checking page structure');
-    cy.document().then(doc => {
-      console.log(doc.body.innerHTML);
-    });
-  });
 
   it("There is products on the page", () => {
     cy.visit("/");

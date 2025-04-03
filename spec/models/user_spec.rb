@@ -39,6 +39,53 @@ RSpec.describe User, type: :model do
       expect(user).to_not be_valid
       expect(user.errors.full_messages).to include("Password can't be blank")
     end
+
+    # test for email case sensitivity
+    it 'should have a unique email (case insensitive)' do
+      User.create(
+        first_name: "John",
+        last_name: "Doe",
+        email: "test@example.com",
+        password: "password",
+        password_confirmation: "password"
+      )
+      
+      user = User.new(
+        first_name: "Jane",
+        last_name: "Doe",
+        email: "TEST@EXAMPLE.COM",
+        password: "password",
+        password_confirmation: "password"
+      )
+      expect(user).to_not be_valid
+      expect(user.errors.full_messages).to include("Email has already been taken")
+    end
+
+    # test email
+    it 'should require an email' do
+      user = User.new(
+        first_name: "John",
+        last_name: "Doe",
+        email: nil,
+        password: "password",
+        password_confirmation: "password"
+      )
+      expect(user).to_not be_valid
+      expect(user.errors.full_messages).to include("Email can't be blank")
+    end
+
+    # test first name
+    it 'should require a first name' do
+      user = User.new(
+        first_name: nil,
+        last_name: "Doe",
+        email: "test@example.com",
+        password: "password",
+        password_confirmation: "password"
+      )
+      expect(user).to_not be_valid
+      expect(user.errors.full_messages).to include("First name can't be blank")
+    end
   
   
 

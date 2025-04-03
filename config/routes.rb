@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'sessions/create'
   get 'sessions/destroy'
   get 'users/new'
-  # get 'users/create'
+  get 'users/create'
   get 'about/index'
 
   # adding routes for user registration and login
@@ -30,9 +30,9 @@ Rails.application.routes.draw do
   resources :orders, only: [:create, :show]
 
   namespace :admin do
-    # get 'categories/index'
-    # get 'categories/new'
-    # get 'categories/create'
+    get 'categories/index'
+    get 'categories/new'
+    get 'categories/create'
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
     # adding route for admin categories. only implementing index new and create

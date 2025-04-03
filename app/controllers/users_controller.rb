@@ -9,6 +9,14 @@ class UsersController < ApplicationController
   end
 
   def create
+
+    # added get request for test
+    if request.get?
+      @user = User.new
+      render :new  # render signup form for GET requests
+      return
+    end
+
     @user = User.new(user_params)
 
     if @user.save

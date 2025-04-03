@@ -8,6 +8,15 @@
     <div>
       <h1><%= @product.name %></h1>
       <p><%= @product.description %></p>
+
+
+      <%# Sold out %>
+      <% if @product.quantity == 0 %>
+        <div class="soldout">
+          Sold Out
+        </div>
+      <% end %>
+
       <div class="quantity">
         <span><%= @product.quantity %> in stock at </span>
         <span><%= @product.price %></span>

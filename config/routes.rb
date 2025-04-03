@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/destroy'
+  get 'users/new'
+  # get 'users/create'
+  get 'about/index'
+
+  # adding routes for user registration and login
+  get '/signup', to: 'users#new'
+  post '/users', to: 'users#create'
+
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+
+  # Route for about index
+  get 'about', to: 'about#index'
 
   root to: 'products#index'
 
@@ -13,8 +30,13 @@ Rails.application.routes.draw do
   resources :orders, only: [:create, :show]
 
   namespace :admin do
+    # get 'categories/index'
+    # get 'categories/new'
+    # get 'categories/create'
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
+    # adding route for admin categories. only implementing index new and create
+    resources :categories, only: [:index, :new, :create]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

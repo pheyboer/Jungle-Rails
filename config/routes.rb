@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'sessions/create'
   get 'sessions/destroy'
   get 'users/new'
-  # get 'users/create'
+  get 'users/create'
   get 'about/index'
 
   # adding routes for user registration and login

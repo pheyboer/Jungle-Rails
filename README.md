@@ -1,34 +1,48 @@
-# Jungle
+# Jungle 🛒
 
-A mini e-commerce application built with Rails 6.1 for purposes of teaching Rails by example.
+A mini e-commerce application built with Ruby on Rails 6.1. Developed during my web development bootcamp to explore Rails fundamentals like MVC architecture, Active Record, admin workflows, and Stripe payment integration.
 
-## Setup
+## Features
 
-1. Run `bundle install` to install dependencies
-2. Create `config/database.yml` by copying `config/database.example.yml`
-3. Create `config/secrets.yml` by copying `config/secrets.example.yml`
-4. Run `bin/rails db:reset` to create, load and seed db
-5. Create .env file based on .env.example
-6. Sign up for a Stripe account
-7. Put Stripe (test) keys into appropriate .env vars
-8. Run `bin/rails s -b 0.0.0.0` to start the server
+- Product catalog with category filtering  
+- Shopping cart and order placement using Stripe (test mode)  
+- Admin dashboard for inventory and category management  
+- Authentication using HTTP Basic Auth  
+- Seeded database for easy setup and testing  
 
-## Database
+## Setup Instructions
 
-If Rails is complaining about authentication to the database, uncomment the user and password fields from `config/database.yml` in the development and test sections, and replace if necessary the user and password `development` to an existing database user.
+1. Clone the repo and navigate to the project folder  
+2. Run `bundle install`  
+3. Copy example config files:  
+   - `cp config/database.example.yml config/database.yml`  
+   - `cp config/secrets.example.yml config/secrets.yml`  
+   - `cp .env.example .env`  
+4. Set up the database:  
+   `bin/rails db:reset`  
+5. Add your Stripe test keys to the `.env` file  
+6. Start the server:  
+   `bin/rails s -b 0.0.0.0`  
+7. Visit `http://localhost:3000` in your browser
 
-## Stripe Testing
+## Stripe Test Card
 
-Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
+To test purchases, use:  
+`4111 1111 1111 1111`  
+with any valid future expiry date and 3-digit CVC.
 
-More information in their docs: <https://stripe.com/docs/testing#cards>
+More test cards: https://stripe.com/docs/testing#cards
 
-## Dependencies
+## Tech Stack
 
-- Rails 6.1 [Rails Guide](http://guides.rubyonrails.org/v6.1/)
-- Bootstrap 5
-- PostgreSQL 9.x
-- Stripe
+- Ruby on Rails 6.1  
+- PostgreSQL  
+- Bootstrap 5  
+- Stripe API  
+- RSpec  
+- HTML, CSS, ERB
 
+## Notes
 
-- Testing new branch 
+If you run into database authentication issues, edit `config/database.yml` and add your local DB username and password under `development` and `test`.
+

@@ -1,48 +1,102 @@
-# Jungle 🛒
+# Jungle Rails 🛒
 
-A mini e-commerce application built with Ruby on Rails 6.1. Developed during my web development bootcamp to explore Rails fundamentals like MVC architecture, Active Record, admin workflows, and Stripe payment integration.
+**Jungle** is a mini e-commerce application built with **Ruby on Rails**. It allows users to browse products, add items to their cart, and complete purchases securely. This project was built to deepen understanding of MVC architecture, database relationships, and full-stack development in a Rails environment.
 
-## Features
+## 🔧 Tech Stack
 
-- Product catalog with category filtering  
-- Shopping cart and order placement using Stripe (test mode)  
-- Admin dashboard for inventory and category management  
-- Authentication using HTTP Basic Auth  
-- Seeded database for easy setup and testing  
+- **Backend:** Ruby on Rails  
+- **Frontend:** Embedded Ruby (ERB), HTML5, CSS3  
+- **Database:** PostgreSQL  
+- **Authentication:** HTTP Basic Auth  
+- **Payments:** Stripe (test mode)  
+- **Testing:** RSpec, Capybara, Poltergeist
+  
+## 🚀 Features
 
-## Setup Instructions
+- User authentication (admin and regular users)
+- Secure checkout using Stripe test payments
+- Admin dashboard for managing products and categories
+- Product catalog with category filtering and inventory tracking
+- Shopping cart with quantity adjustment and item removal
+- Flash messages for user feedback
+- Pagination and improved layout polish  
 
-1. Clone the repo and navigate to the project folder  
-2. Run `bundle install`  
-3. Copy example config files:  
-   - `cp config/database.example.yml config/database.yml`  
-   - `cp config/secrets.example.yml config/secrets.yml`  
-   - `cp .env.example .env`  
-4. Set up the database:  
-   `bin/rails db:reset`  
-5. Add your Stripe test keys to the `.env` file  
-6. Start the server:  
-   `bin/rails s -b 0.0.0.0`  
-7. Visit `http://localhost:3000` in your browser
+## 🧪 Testing
 
-## Stripe Test Card
+The application includes:
 
-To test purchases, use:  
-`4111 1111 1111 1111`  
-with any valid future expiry date and 3-digit CVC.
+- Model tests (validations, associations)
+- Feature tests (UI, form interactions)
+- Admin-specific tests (CRUD actions)
 
-More test cards: https://stripe.com/docs/testing#cards
+  To run tests:
 
-## Tech Stack
+```bash
+bundle exec rspec
+```
 
-- Ruby on Rails 6.1  
-- PostgreSQL  
-- Bootstrap 5  
-- Stripe API  
-- RSpec  
-- HTML, CSS, ERB
+## 🛠 Setup Instructions
 
+1. **Clone the repo**
+
+       git clone https://github.com/pheyboer/Jungle-Rails.git
+       cd Jungle-Rails
+
+2. **Install dependencies**
+
+       bundle install
+
+3. **Set up the database**
+
+       rails db:reset
+
+4. **Start the server**
+
+       rails server
+
+5. **Open in browser**
+
+       http://localhost:3000
+
+## 🔐 Admin Access
+
+To access the admin dashboard:
+
+- Navigate to `/admin/products`
+- Use HTTP Basic Auth:
+  - **Username:** `admin`
+  - **Password:** `admin`
+ 
+    
+## 💳 Payments
+
+Stripe is integrated in test mode. You can simulate a successful purchase using a universal test credit card. This works in Canada and internationally:
+
+- Card number: `4242 4242 4242 4242`
+- Expiry date: Any future date
+- CVC: Any 3-digit number
+- Postal Code: Any valid Canadian postal code (e.g. `M5V 3L9`)
+  
 ## Notes
 
 If you run into database authentication issues, edit `config/database.yml` and add your local DB username and password under `development` and `test`.
+
+
+## 📚 Learning Outcomes
+
+- Implemented RESTful routing and MVC structure
+- Worked with ActiveRecord associations and validations
+- Built and tested full-stack features in a Rails app
+- Improved front-end UI using ERB and CSS
+- Integrated third-party services like Stripe
+
+## 🙋‍♂️ Author
+
+**Peter Heyboer**  
+[LinkedIn](https://www.linkedin.com/in/peterheyboer/)  
+[GitHub](https://github.com/pheyboer)
+
+## 📜 License
+
+This project is licensed under the MIT License.
 
